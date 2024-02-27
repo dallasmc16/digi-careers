@@ -1,11 +1,43 @@
+<!-- views/pages/job-detail.ejs -->
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title><%= jobBusiness %></title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <h1><%= jobBusiness %></h1>
-        <p> Welcome to <%= jobBusiness %></p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= job.jobTitle %> at <%= job.jobBusiness %></title>
+    <!-- Include your CSS stylesheets or other head content here -->
+</head>
+<body>
+    <header>
+        <!-- Include your site header content here -->
+        <h1><%= job.jobTitle %> at <%= job.jobBusiness %></h1>
+    </header>
+
+    <main>
+        <section class="job-details">
+            <h2>Job Details</h2>
+            <p><strong>Company:</strong> <%= job.jobBusiness %></p>
+            <p><strong>Business Unit:</strong> <%= job.jobBusinessUnit %></p>
+            <p><strong>Location:</strong> <%= job.jobLocation %></p>
+            <p><strong>Job Type:</strong> <%= job.jobType %></p>
+            <p><strong>Category:</strong> <%= job.jobCategory %></p>
+            <p><strong>Level:</strong> <%= job.jobLevel %></p>
+            <p><strong>Posted Date:</strong> <%= job.jobPostDate %></p>
+            <p><strong>Description:</strong> <%= job.jobDescription %></p>
+        </section>
+
+        <section class="company-info">
+            <h2>About <%= job.jobBusiness %></h2>
+            <p><strong>Industry:</strong> <%= job.jobBusinessCategory %></p>
+            <p><strong>Employees:</strong> <%= job.jobInfoEmployees %></p>
+            <p><strong>Website:</strong> <a href="<%= job.jobBusinessWebsite %>"><%= job.jobBusinessWebsite %></a></p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Include your site footer content here -->
+        <p>© <%= new Date().getFullYear() %> <%= job.jobBusiness %></p>
+    </footer>
+</body>
 </html>

@@ -25,6 +25,13 @@ fs.readFile('output.json', 'utf8', (err, data) => {
     // Render a view (EJS template) and pass the job data to it
     res.render('job-detail', { jobBusiness: jobBusiness });
   });
+
+  app.get('/', (req, res) => {
+    // Handle the root route (e.g., render an index page or redirect)
+    // For now, let's send a simple message:
+    res.send('Welcome to the job portal!');
+  });
+  
 });
 
 app.listen(5500, () => {
