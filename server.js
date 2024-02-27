@@ -15,9 +15,9 @@ fs.readFile('output.json', 'utf8', (err, data) => {
   jobData = JSON.parse(data);
 
   // Dynamic route for jobs
-  app.get('/jobs/*', (req, res) => {
-    // req.params[0] contains the full path after /jobs/
-    const externalUrl = req.params[0];
+  app.get('/jobs/:jobInternalUrl', (req, res) => {
+    // req.params.jobInternalUrl contains the value from the URL
+    const externalUrl = req.params.jobInternalUrl;
     const job = jobData.find(job => job.jobInternal_url === externalUrl);
     if (!job) {
       return res.status(404).send('Job not found');
@@ -25,13 +25,13 @@ fs.readFile('output.json', 'utf8', (err, data) => {
     // Render a view (EJS template) and pass the job data to it
     res.render('job-detail', { jobBusiness: jobBusiness });
   });
+});
 
-  app.get('/', (req, res) => {
-    // Handle the root route (e.g., render an index page or redirect)
-    // For now, let's send a simple message:
-    res.send('Welcome to the job portal!');
-  });
-  
+// Root route handler
+app.get('/', (req, res) => {
+  // Handle the root route (e.g., render an index page or redirect)
+  // For now, let's send a simple message:
+  res.send('Welcome to the job portal!');
 });
 
 app.listen(5500, () => {
